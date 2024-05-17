@@ -1,0 +1,23 @@
+@page "/expenses"
+@inject HttpClient Http
+@using FinanceBlazorApp.Models
+
+<h3>Expenses</h3>
+
+<button @onclick="LoadExpenses">LoadExpenses</button>
+
+<ul>
+    @foreach (var expense in expenses)
+    {
+        <li>@expense.Description - @expense.Amount</li>
+    }
+</ul>
+
+@code {
+    private List<Expense> expenses = new List<Expense>();
+
+    private async Task LoadExpenses()
+    {
+        expenses = await Http.GetFromJsonAsync<List<Expense>>("https://localhost:5001/api/expenses");
+    }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="FinanceMobileApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FinanceMobileApp">
+
+	<FlyoutItem Title="Expenses" Icon="icon_about.png">
+		<ShellContent ContentTemplate="{DataTemplate local:ExpensesPage}" />
+	</FlyoutItem>
+
+</Shell>
