@@ -37,5 +37,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-Console.WriteLine("running...slay");
 app.Run();
