@@ -1,10 +1,11 @@
 @page "/expenses"
-@inject HttpClient Http
 @using FinanceBlazorApp.Models
+@inject ExpenseService ExpenseService
 
 <h3>Expenses</h3>
 
 <button @onclick="LoadExpenses">LoadExpenses</button>
+<button @onclick="AddExpense">AddExpenses</button>
 
 <ul>
     @foreach (var expense in expenses)
@@ -18,6 +19,21 @@
 
     private async Task LoadExpenses()
     {
-        expenses = await Http.GetFromJsonAsync<List<Expense>>("https://localhost:5001/api/expenses");
+        expenses = await ExpenseService.GetExpensesAsync();
+    }
+
+    private async Task AddExpense()
+    {
+        var newExpense = new Expense
+        {
+            Amount = 100.0m,
+            Description = "Test Expense",
+            Category = "Test",
+            Date = DateTime.Now,
+            UserId = 1
+        };
+
+        var addedExpense = await ExpenseService.AddExpenseAsync(newExpense);
+        expenses.Add(addedExpense);
     }
 }
